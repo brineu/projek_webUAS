@@ -20,7 +20,7 @@ Auth::routes(['verify' => true]);
 
 Route::get('/cek-role', function(){
     if (auth()->user()->hasRole(['admin', 'pasien', 'dokter'])){
-        redirect('/dashboard');
+        return redirect('/dashboard');
     }else{
         redirect('/');
 
@@ -28,23 +28,23 @@ Route::get('/cek-role', function(){
 });
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('pages.home');
 });
 
 Route::get('/dashboard_admin', function () {
     return view('admin/dashboard_admin');
-})->middleware(['verified', 'role:admin']);
+})->middleware(['auth', 'role:admin']);
 
-Route::get('/pemesanan', function () {
-    return view('admin/pemesanan');
-})->middleware(['verified', 'role:dokter']);
+Route::get('/dashboard_dokter', function () {
+    return view('admin/dashboard_dokter');
+})->middleware(['verified', 'role:admin|dokter']);
 
 
 Route::get('/dashboard', function () {
     return view('admin/dashboard');
-})->middleware(['verified'])->name('dashboard');
+})->middleware(['verified'], 'role:admin|pasien')->name('dashboard');
 
-Route::middleware(['verified', 'role:admin'])->group(function () {
+Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/data_pasien/{id}/konfirmasi',[PasienController::class, 'konfirmasi']);
     Route::get('/data_pasien/{id}/delete',[PasienController::class, 'delete']);
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -55,6 +55,13 @@ Route::middleware(['verified', 'role:admin'])->group(function () {
     
 });
 
+
+
+
+
+Route::get('user-page', function() {
+    return 'Halaman untuk User';
+})->middleware('role:user')->name('user.page');
 
 Route::resource('/profile_user',ProfileUserController::class);
 
