@@ -2,7 +2,9 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\PasienController;
+use App\Http\Controllers\DokterController;
+use App\Http\Controllers\ProfileUserController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,18 +16,33 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Auth::routes(['verify' => true]);
+
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard_admin', function () {
+    return view('admin/dashboard_admin');
+})->middleware(['verified', 'role:admin']);
 
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+Route::get('/dashboard', function () {
+    return view('admin/dashboard');
+})->middleware(['verified'])->name('dashboard');
+
+Route::middleware(['verified', 'role:admin'])->group(function () {
+    Route::get('/data_pasien/{id}/konfirmasi',[PasienController::class, 'konfirmasi']);
+    Route::get('/data_pasien/{id}/delete',[PasienController::class, 'delete']);
+    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    
+    Route::resource('/data_pasien',PasienController::class);
+    Route::resource('/data_dokter',DokterController::class);
+    
+    
 });
+
+
+Route::resource('/profile_user',ProfileUserController::class);
 
 require __DIR__.'/auth.php';
