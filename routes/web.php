@@ -35,6 +35,10 @@ Route::get('/dashboard_admin', function () {
     return view('admin/dashboard_admin');
 })->middleware(['verified', 'role:admin']);
 
+Route::get('/pemesanan', function () {
+    return view('admin/pemesanan');
+})->middleware(['verified', 'role:dokter']);
+
 
 Route::get('/dashboard', function () {
     return view('admin/dashboard');
