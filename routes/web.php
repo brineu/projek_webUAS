@@ -18,6 +18,15 @@ use App\Http\Controllers\ProfileUserController;
 
 Auth::routes(['verify' => true]);
 
+Route::get('/cek-role', function(){
+    if (auth()->user()->hasRole(['admin', 'pasien', 'dokter'])){
+        redirect('/dashboard');
+    }else{
+        redirect('/');
+
+    }
+});
+
 Route::get('/', function () {
     return view('welcome');
 });
