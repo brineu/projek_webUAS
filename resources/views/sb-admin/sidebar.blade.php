@@ -70,8 +70,8 @@
     <div id="pengaturan" class="collapse" aria-labelledby="headingUtilities"
         data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item" href="utilities-color.html">Profile Pasien</a>
-            <a class="collapse-item" href="utilities-border.html">Footer</a>
+            <a class="collapse-item" href="/profilePasien">Profile Pasien</a>
+            <a class="collapse-item" href="utilities-border.html">Jadwal Booking</a>
             <a class="collapse-item" href="/profile_user">Tentang Kami</a>
         </div>
     </div>
