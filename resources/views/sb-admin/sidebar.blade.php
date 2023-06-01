@@ -71,8 +71,8 @@
         data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
             <a class="collapse-item" href="utilities-color.html">Profile Pasien</a>
-            <a class="collapse-item" href="/pemesanan">Booking</a>
-            <a class="collapse-item" href="/profile_user">Riwayat</a>
+            <a class="collapse-item" href="utilities-border.html">Footer</a>
+            <a class="collapse-item" href="/profile_user">Tentang Kami</a>
         </div>
     </div>
 </li>
@@ -90,8 +90,8 @@
         data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
             <a class="collapse-item" href="utilities-color.html">Profile Dokter</a>
-            <a class="collapse-item" href="utilities-border.html">Jadwal</a>
-            <a class="collapse-item" href="/profile_user">Riwayat Pemeriksaan</a>
+            <a class="collapse-item" href="utilities-border.html">Footer</a>
+            <a class="collapse-item" href="/profile_user">Tentang Kami</a>
         </div>
     </div>
 </li>
